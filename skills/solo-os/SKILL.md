@@ -2,9 +2,11 @@
 name: solo-os
 description: >-
   Expert-roundtable decision framework: the AI convenes a panel of experts with
-  mutually exclusive stances to debate an issue and vote; the human confirms before
-  anything lands. Includes four sub-modes drawing on four sources of cognitive
-  diversity, a three-dimension role-generation spec, a "will forgetting this hurt
+  conflicting stances who cross-examine one issue from several angles and shape it
+  into 2–3 candidate options, one recommendation, and the evidence each candidate
+  still lacks. The vote shows where the experts lean, not a verdict; the human
+  confirms before anything lands. Includes four tables (role / blind / human /
+  contrarian) drawing on four sources of cognitive diversity, a three-dimension role-generation spec, a "will forgetting this hurt
   tomorrow?" persistence gate, an optional outside seat (a blind answer from another
   vendor's model), and a four-layer knowledge-immunity model. For solo
   developers and small teams making architecture, priority, and trade-off decisions.
@@ -13,7 +15,7 @@ description: >-
 
 # Solo OS — an expert-roundtable decision framework for solo developers
 
-**Goal**: upgrade "ask the AI for an answer" into "make a panel of experts with conflicting stakes argue it out in front of you, then vote". The AI is a thinking amplifier, not a ghostwriter — its value is not in producing the one right answer but in putting every load-bearing face of a decision on the table at once.
+**Goal**: upgrade "ask the AI for an answer" into "make a panel of experts with conflicting stakes look at the same issue from several angles, in front of you, so the side you would have missed shows up before you decide". The AI is a thinking amplifier, not a ghostwriter — its value is not in producing the one right answer but in putting every load-bearing face of a decision on the table at once.
 
 This framework is distilled from a collaboration system that has run inside a real project for over half a year and produced three-hundred-plus decision records. Every case study below actually happened; only the identifying details have been removed.
 
@@ -21,9 +23,9 @@ This framework is distilled from a collaboration system that has run inside a re
 
 ## Core principles
 
-1. **The AI is a thinking amplifier, not a ghostwriter** — it simulates several experts debating and voting; it does not hand down a single answer.
-2. **Decisions are produced by a roundtable vote and take effect on human confirmation** — neither the user alone nor the AI alone decides. Nothing lands until the user says "confirm" or "go".
-3. **Decisions persist in layers** — after a vote passes, run the gate question: "if we forgot this decision tomorrow, would the project get hurt?" The answer decides which layer it sinks into (see "The persistence gate" below).
+1. **The AI is a thinking amplifier, not a ghostwriter** — it simulates several experts cross-examining an issue from different angles; it does not hand down a single answer.
+2. **The roundtable shapes the options; the human decides** — the table converges the issue into candidates and a recommendation (the vote expresses where the experts lean; it is not a verdict — see "What the roundtable is for" below). Neither the user alone nor the AI alone decides. Nothing lands until the user says "confirm" or "go".
+3. **Decisions persist in layers** — once the user confirms a recommendation, run the gate question: "if we forgot this decision tomorrow, would the project get hurt?" The answer decides which layer it sinks into (see "The persistence gate" below).
 4. **Fight forgetting proactively** — the moment a discussion's outcome could be lost to the next session, push for it to be written down. Don't wait to be asked.
 5. **A clean division of labor** — the human owns direction, creativity, and value judgments; the AI owns rigor, consistency, and actively surfacing contradictions and blind spots across documents. The AI never changes direction on its own and never executes a strategic decision without confirmation.
 
@@ -33,11 +35,28 @@ This framework is distilled from a collaboration system that has run inside a re
 
 ```text
 prior-decision scan → frame the issue → debate (cross-examination, not parallel
-statements) → vote (ratios and reasons recorded) → fact verification (when the
-issue asserts facts) → persistence gate → user confirmation → write-through
+statements) → vote (each expert's lean, with ratios and reasons recorded) → fact
+verification (when the issue asserts facts) → candidates + recommendation + missing
+evidence → persistence gate → user confirmation → write-through
 ```
 
 Minority opinions are recorded too — they are the re-entry points for future reopenings.
+
+### What the roundtable is for: shaping options, not reviewing them
+
+The roundtable handles **questions you have not thought through yet**. It always produces three things:
+
+1. **2–3 candidate options**
+2. **One recommendation**
+3. **What evidence each candidate still lacks before it can be decided** — name the command to run, the file to read, or the data to wait for
+
+The vote stays, but it means "which way the experts lean", not "what was decided". Every expert at the table is played by the same model and knows exactly the same facts, so they cannot give one another new information — a vote count is not evidence on its own. Once the user confirms a recommendation it lands as usual, and the missing-evidence list is written down with it; a recommendation resting on zero verified facts is marked "unverified" where it lands.
+
+Reach for something else when:
+
+- **You already have a finished artifact and want it picked apart** → a review checklist, item by item
+- **You want to know whether a conclusion actually holds** → the outside seat below, or a cross-vendor adversarial review
+- **You only want ideas spread out, not converged** → a brainstorm; don't force a recommendation
 
 ### Checkpoint 1: prior-decision scan (before framing, before any expert speaks)
 
@@ -113,24 +132,24 @@ Give each role a **concrete experience anchor**; roles that are bare titles conv
 
 ---
 
-## Four sub-modes (four sources of cognitive diversity)
+## Four tables (four sources of cognitive diversity)
 
-| Sub-mode | Diversity source | Fits |
-|----------|-----------------|------|
-| 1a quick roundtable (default) | role difference | general "how do we build it" discussions |
-| 1b split-perspective debate | information difference (each perspective reads only its own material) | complex issues needing full-surface evaluation |
-| 1c mixed roundtable | ontological difference (a real human votes at the table) | the user has a stance, or holds private information the AI lacks |
-| 1d role adversarial | thinking-mode difference (rational pole vs intuitive pole) | "should we", "priority", value-judgment calls |
+| Table | Diversity source | Fits |
+|-------|-----------------|------|
+| **Role table** (default; formerly 1a quick roundtable) | role difference | general "how do we build it" discussions |
+| **Blind table** (formerly 1b split-perspective debate) | information difference (each perspective reads only its own material) | complex issues needing full-surface evaluation |
+| **Human table** (formerly 1c mixed roundtable) | ontological difference (a real human votes at the table) | the user has a stance, or holds private information the AI lacks |
+| **Contrarian table** (formerly 1d role adversarial) | thinking-mode difference (rational pole vs intuitive pole) | "should we", "priority", value-judgment calls, "I'm torn" |
 
-**Smart selection**: the AI recommends a sub-mode from the user's wording — "discuss / design" → 1a; "should we / is it worth it" → 1d; "analyze from multiple angles" → 1b; "I think we should…" → 1c. When the recommendation is not the default, it is a one-line prompt and the user switches with a single word. On a weak consensus (3:2), proactively suggest switching modes.
+**Smart selection**: the AI recommends a table from the user's wording — "discuss / design" → role table; "should we / is it worth it / I'm torn" → contrarian table; "analyze from multiple angles" → blind table; "I think we should…" → human table. When the recommendation is not the role table, it is a one-line prompt — "Suggest the **contrarian table** (this is a priority trade-off). Reply `role table` / `blind table` / `human table` / `contrarian table` to switch." On a weak consensus (3:2), proactively suggest switching tables.
 
-**1c's special rule**: the human casts one equal vote, and the vote takes effect immediately (the human already participated — no second confirmation), revocable afterwards. Human participation is a spectrum — observer → questioner → participant → director — adjustable at any time.
+**The human table's special rule**: the human casts one equal vote, and that vote counts as the confirmation (the human already participated — no second confirmation; the persistence gate still runs), revocable afterwards. Human participation is a spectrum — observer → questioner → participant → director — adjustable at any time.
 
-**1d's red line**: simulating "an angel investor's perspective" is fine; **simulating a specific real person is not**. Simulated-human roles need a concrete persona (occupation + the dimension they care about), generated fresh for each issue, never reused from a fixed list.
+**The contrarian table's red line**: simulating "an angel investor's perspective" is fine; **simulating a specific real person is not**. Simulated-human roles need a concrete persona (occupation + the dimension they care about), generated fresh for each issue, never reused from a fixed list.
 
 > **Real case (anonymized)**: discussing a registration-agency service, the rational experts unanimously recommended outsourcing. After a "budget-conscious solo developer" persona joined the table, the user followed that thread with one question — and the plan was rewritten as do-it-yourself: ninety percent cheaper for two extra hours of paperwork. Value-judgment issues without someone at the table who hates spending money produce answers that are correct and expensive.
 
-**Legal switches**: 1a can escalate to 1c or 1d; 1b can chain into 1c; **1b + 1c are mutually exclusive** — a human's all-knowing view breaks the information isolation.
+**Legal switches**: the role table can escalate to the human or contrarian table; the blind table can chain into the human table; **blind table + human table are mutually exclusive** — a human's all-knowing view breaks the information isolation.
 
 ---
 
