@@ -5,10 +5,10 @@ Public AI-agent skills by [xiaoba-dev](https://clawhub.ai/user/xiaoba-dev). Each
 | Skill | What it does | Registry | Version |
 |---|---|---|---|
 | [`solo-os`](skills/solo-os) | Expert-roundtable decision framework | [ClawHub](https://clawhub.ai/xiaoba-dev/solo-os) | 2.2.1 |
-| [`adversarial-debate`](skills/adversarial-debate) | Cross-vendor adversarial review. | [ClawHub](https://clawhub.ai/xiaoba-dev/adversarial-debate) | 2.4.3 |
+| [`debate`](skills/debate) | Cross-vendor adversarial review. | [ClawHub](https://clawhub.ai/xiaoba-dev/debate) | 2.4.3 |
 | [`foreman`](skills/foreman) | Dispatch-and-acceptance control desk for farming coding work out to background agents. | [ClawHub](https://clawhub.ai/xiaoba-dev/foreman) | 2.0.3 |
 | [`distill`](skills/distill) | Session knowledge distillation | [ClawHub](https://clawhub.ai/xiaoba-dev/distill) | 2.0.2 |
-| [`doc-governance`](skills/doc-governance) | Installs a documentation governance architecture in a project and diagnoses what it is missing. | [ClawHub](https://clawhub.ai/xiaoba-dev/doc-governance) | 2.0.10 |
+| [`docs-gov`](skills/docs-gov) | Installs a documentation governance architecture in a project and diagnoses what it is missing. | [ClawHub](https://clawhub.ai/xiaoba-dev/docs-gov) | 2.0.10 |
 
 ## Install
 
