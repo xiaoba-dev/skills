@@ -13,7 +13,9 @@ description: >-
   Invoke explicitly.
 ---
 
-# Solo OS — an expert-roundtable decision framework for solo developers
+# Solo OS · roundtable core — an expert-roundtable decision framework for solo developers
+
+> This is the roundtable core of Solo OS — the part of a larger collaboration system that has been cleaned up for public use. More modes will be added as they are made generic.
 
 **Goal**: upgrade "ask the AI for an answer" into "make a panel of experts with conflicting stakes look at the same issue from several angles, in front of you, so the side you would have missed shows up before you decide". The AI is a thinking amplifier, not a ghostwriter — its value is not in producing the one right answer but in putting every load-bearing face of a decision on the table at once.
 
@@ -136,12 +138,12 @@ Give each role a **concrete experience anchor**; roles that are bare titles conv
 
 | Table | Diversity source | Fits |
 |-------|-----------------|------|
-| **Role table** (default; formerly 1a quick roundtable) | role difference | general "how do we build it" discussions |
-| **Blind table** (formerly 1b split-perspective debate) | information difference (each perspective reads only its own material) | complex issues needing full-surface evaluation |
-| **Human table** (formerly 1c mixed roundtable) | ontological difference (a real human votes at the table) | the user has a stance, or holds private information the AI lacks |
-| **Contrarian table** (formerly 1d role adversarial) | thinking-mode difference (rational pole vs intuitive pole) | "should we", "priority", value-judgment calls, "I'm torn" |
+| **Role table** · 角色桌 (default; formerly 1a quick roundtable) | role difference | general "how do we build it" discussions |
+| **Blind table** · 盲桌 (formerly 1b split-perspective debate) | information difference (each perspective reads only its own material) | complex issues needing full-surface evaluation |
+| **Human table** · 真人桌 (formerly 1c mixed roundtable) | ontological difference (a real human votes at the table) | the user has a stance, or holds private information the AI lacks |
+| **Contrarian table** · 反调桌 (formerly 1d role adversarial) | thinking-mode difference (rational pole vs intuitive pole) | "should we", "priority", value-judgment calls, "I'm torn" |
 
-**Smart selection**: the AI recommends a table from the user's wording — "discuss / design" → role table; "should we / is it worth it / I'm torn" → contrarian table; "analyze from multiple angles" → blind table; "I think we should…" → human table. When the recommendation is not the role table, it is a one-line prompt — "Suggest the **contrarian table** (this is a priority trade-off). Reply `role table` / `blind table` / `human table` / `contrarian table` to switch." On a weak consensus (3:2), proactively suggest switching tables.
+**Smart selection**: the AI recommends a table from the user's wording — "discuss / design" → role table; "should we / is it worth it / I'm torn" → contrarian table; "analyze from multiple angles" → blind table; "I think we should…" → human table. When the recommendation is not the role table, it is a one-line prompt — "Suggest the **contrarian table** (this is a priority trade-off). Reply `role table` / `blind table` / `human table` / `contrarian table` to switch." When talking to the user in Chinese, use these exact names: 角色桌 / 盲桌 / 真人桌 / 反调桌. On a weak consensus (3:2), proactively suggest switching tables.
 
 **The human table's special rule**: the human casts one equal vote, and that vote counts as the confirmation (the human already participated — no second confirmation; the persistence gate still runs), revocable afterwards. Human participation is a spectrum — observer → questioner → participant → director — adjustable at any time.
 
